@@ -1,4 +1,4 @@
-const BASE_URL = "http://localhost:5678/webhook/recruitment";
+const BASE_URL = "https://n8n.rekrutkita.web.id/recruitment";
 
 export const API_ENDPOINTS = {
   START_INTERVIEW: `${BASE_URL}/start-interview`,
