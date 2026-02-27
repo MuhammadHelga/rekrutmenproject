@@ -16,7 +16,15 @@ function ChatInterview() {
 
     const chatEndRef = useRef(null);
     const location = useLocation();
-    const { userName, fullName, role, candidateId, email } = location.state || {};
+
+    const localData = JSON.parse(localStorage.getItem("candidateData") || "{}");
+    
+    // const { userName, fullName, role, candidateId, email } = location.state || {};
+    const userName = location.state?.userName || localData["Nama Panggilan"];
+    const fullName = location.state?.fullName || localData["Nama Lengkap"];
+    const role = location.state?.role || localData["Bidang"];
+    const candidateId = location.state?.candidateId || localData["Id Kandidat"];
+    const email = location.state?.email || localData["Email"];
 
     const getTime = () =>
         new Date().toLocaleTimeString([], {
@@ -123,6 +131,8 @@ function ChatInterview() {
         } else {
             setTimeout(async () => {
                 setIsFinished(true);
+
+                localStorage.removeItem("candidateData");
                 
                 setMessages((prev) => [
                     ...prev,
