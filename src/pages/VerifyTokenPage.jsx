@@ -28,7 +28,7 @@ function VerifyTokenPage() {
                     } 
                 });
             } else {
-                alert("Token tidak valid atau belum disetujui HRD!");
+                alert("Token tidak valid atau sudah kadaluwarsa!");
             }
         } catch (error) {
             console.error("Error verify token:", error);
