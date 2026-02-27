@@ -55,7 +55,7 @@ function VerifyTokenPage() {
                             type="text"
                             value={token}
                             onChange={(e) => setToken(e.target.value.toUpperCase())}
-                            placeholder="Contoh: AB1234"
+                            placeholder="Contoh: AB123"
                             className="w-full p-3 border-2 border-gray-100 rounded-xl focus:border-[#FEBD5A] outline-none text-center font-mono text-xl tracking-widest"
                             maxLength={6}
                         />
