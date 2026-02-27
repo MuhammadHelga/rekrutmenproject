@@ -42,7 +42,7 @@ function VerifyTokenPage() {
                 <div className="text-center mb-8">
                     <h2 className="text-2xl font-bold text-[#0D2B45]">Verifikasi Akses</h2>
                     <p className="text-gray-500 text-sm mt-2">
-                        Masukkan token yang dikirimkan ke Email/WhatsApp Anda
+                        Masukkan token yang dikirimkan ke Email Anda
                     </p>
                 </div>
 
