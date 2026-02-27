@@ -1,13 +1,16 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { verifyCandidateToken } from "../services/ApiRequests";
 
 function VerifyTokenPage() {
     const [token, setToken] = useState("");
     const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate();
-    const { userName, fullName, role, candidateId, email, } = location.state || {};
-
+    const location = useLocation();
+    
+    const localData = JSON.parse(localStorage.getItem("candidateData") || "{}");
+    const { userName, fullName, role, candidateId, email, } = location.state || localData;
+    
     const handleVerify = async (e) => {
         e.preventDefault();
         if (!token) return alert("Silakan masukkan token!");
@@ -18,14 +21,9 @@ function VerifyTokenPage() {
             const data = await verifyCandidateToken(token);
 
             if (data.isValid) {
+                localStorage.setItem("candidateData", JSON.stringify(data.candidateData));
                 navigate("/wawancara", { 
-                    state: { 
-                        userName: data.candidateData["Nama Panggilan"],
-                        fullName: data.candidateData["Nama Lengkap"],
-                        email: data.candidateData["Email"],
-                        role: data.candidateData["Bidang"], // Pastikan mengambil dari respon n8n
-                        candidateId: data.candidateData["Id Kandidat"]
-                    } 
+                    state: data.candidateData 
                 });
             } else {
                 alert("Token tidak valid atau sudah kadaluwarsa!");
