@@ -35,6 +35,9 @@ function FormPages() {
 
         try {
             await sendFormData(payload);
+
+            localStorage.setItem("candidateData", JSON.stringify(payload));
+            
             navigate("/verify-token", {
                 state: {
                 userName: form.nickName || form.fullName,
